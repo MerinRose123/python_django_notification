@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load admin_urls %}
+{% load static %}
+
+<html>
+	<head>
+		<title>Django project</title>
+		<link rel = "stylesheet" type= "text/css" href = "{% static 'css/style.css' %}"/>
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body>
+		<div id="container">
+			<div class="header">
+				<span class="logo">
+					<img src= "{% static 'images/logo.png' %}" alt="image not available"/>
+				</span>
+				<div class="heading">
+					<p class="tajheading">Django Project</p>
+				</div>
+			
+				<div class="navcontainer">
+					{% block links %}
+					<a href="{% static '../register/' %}">Registration</a>   |
+					<a href="{% static '../login/' %}">login</a>   |
+					{% endblock %}
+					<a href="{% url 'admin:index' %}">admin</a>    |
+				</div>
+			</div>
+			<div class="container1">
+				{% block content %}
+                    This is the base page.Please login to get started......
+				<div class="success">
+					{% if messages %}
+						<ul class="messages">
+							{% for message in messages %}
+								<li>
+									{{ message }}
+								</li>
+							{% endfor %}
+						</ul>
+					{% endif %}
+				</div>
+
+				{% endblock %}
+			</div>
+			<div class="foot">
+				<footer>
+					Sign in for details!!
+
+				</footer>
+			</div>
+	    </div>
+	</body>
+</html>
+</html>

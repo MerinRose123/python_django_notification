@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+	<a href="{% static '../logout/' %}">logout</a>   |
+	<a href="{% static '../home/' %}">home</a>   |
+	
+{% endblock %}
+
+{% block content %}
+	<p><centre>EDIT HERE .....!!</centre></p>
+    <form method="POST" >
+        {% csrf_token %}
+        <table border="1">
+             {{ form.as_table }}
+        </table>
+    	<input id="submit" type="submit" value="Edit Details" />
+	</form>
+	
+
+{% endblock %}

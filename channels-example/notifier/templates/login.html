@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+	<a href="{% static '../register/' %}">Registration</a>   |
+	<a href="{% static '../' %}">base page</a>  |
+	
+{% endblock %}
+
+{% block content %}
+	<p><centre>Login page .....!!</centre></p>
+    <form method="POST" >
+        {% csrf_token %}
+        <table border="1">
+             {{ form.as_table }}
+        </table>
+    	<input id="submit" type="submit" value="Login" />
+	</form>
+	<div class="error">
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li>
+					{{ message }}
+				</li>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}

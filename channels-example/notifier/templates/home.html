@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+	<a href="{% static '../logout/' %}">logout</a>      |
+	<a href="{% static '../edit/' %}">edit account</a>      |
+	<a href="{% static '../delete/' %}">delete account</a>      |
+	
+{% endblock %}
+
+{% block content %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="{% static 'channels/js/websocketbridge.js' %}" type="text/javascript"></script>
+	<p><centre>Home Page .....!!</centre></p>
+	<div class="success">
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li>
+					{{ message }}
+				</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
+	<center>
+		<a href="{% static '../passwordchange/' %}"><button class="button">Change password</button></a>
+		<a href="{% static '../lobby/' %}"><button class="button">Start A Chat</button></a>
+	</center>
+	<p>
+    <h2>Details of the Users</h2>
+
+	<table border="1" class="table">
+		<thead>
+			<tr colspan="2" class="success">
+				<th>Username: </th>
+				<th> Firstname: </th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for data in userlogin %}
+			<tr class="warning">
+				<td>{{ data.username}}</td>
+				<td>{{ data.first_name}}</td>
+			</tr>
+
+		{% endfor %}
+		</tbody>
+	</table>
+	<h1>Notifier</h1>
+    <p>Notifications</p>
+    <ul id="notifylist"></ul>
+		<li id="not">
+
+		</li>
+    <script>
+		document.addEventListener('DOMContentLoaded', function() {
+		  const webSocketBridge = new channels.WebSocketBridge();
+		  const nl = document.querySelector("#notifylist");
+
+		  webSocketBridge.connect('/notifications/');
+		  webSocketBridge.listen(function(action, stream) {
+			console.log("RESPONSE:", action);
+			if(action.event == "New User") {
+			  var el = document.getElementById("not");
+			  el.innerHTML = `New user <b>${action.username}</b> has joined to easychat!`;
+			  nl.appendChild(el);
+			}
+			if(action.event == "Delete User") {
+			  var el = document.getElementById("not");
+			  el.innerHTML = `Existing user <b>${action.username}</b> has deleted account from easychat!`;
+			  nl.appendChild(el);
+			}
+		  })
+		  document.ws = webSocketBridge; /* for debugging */
+		})
+    </script>
+{% endblock %}

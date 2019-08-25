@@ -1,0 +1,10 @@
+# chat/routing.py
+from django.urls import path
+
+from notifier.consumers import NoseyConsumer
+from . import consumers
+
+websocket_urlpatterns = [
+    path('ws/chat/<str:room_name>/', consumers.ChatConsumer),
+    path("notifications/", NoseyConsumer),
+]

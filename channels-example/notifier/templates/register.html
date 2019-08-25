@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block links %}
+	<a href="{% static '../' %}">base page</a>  |
+	<a href="{% static '../login/' %}">login</a>   |
+	
+{% endblock %}
+
+{% block content %}
+	<p><centre>REGISTER HERE .....!!</centre></p>
+    <form method="POST" >
+        {% csrf_token %}
+        <table border="1">
+             {{ form.as_table }}
+        </table>
+    	<input id="submit" type="submit" value="Register Here" />
+	</form>
+
+{% endblock %}

@@ -1,0 +1,168 @@
+html,body{
+	margin : 0;
+	padding : 0;
+	height : 100%;
+	width:100%;
+	background-color : lavender;
+}
+#container{
+	height:100%;
+}
+.header{
+	height : 100px;
+	width: 100%;
+	background-color:black;
+}
+.logo{
+	margin-left:2%;
+	float:left;
+}
+.logo img{
+	width:100px;
+	max-width: 80%;
+    max-height: 80%;
+}
+.heading{
+	float:left;
+	margin-left: 10%;
+}
+h1{
+	color:orange;
+}
+.navcontainer{
+	float:right;
+	padding-top:70px;
+	color:white;
+}
+.navcontainer a{
+	color:white;
+	text-decoration: none;
+}
+.button {
+  padding: 15px 25px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+a:hover {
+  color: yellow;
+}
+.container1{
+	height:calc(100% - 150px);
+	overflow:auto;
+}
+.banner{
+	height:300px;
+	width:100%;
+}
+.banner img{
+	max-width: 100%;
+    max-height: 100%;
+    width:100%;
+}
+.sechead{
+	text-align:center;
+}
+.block{
+	float:left;
+	width:32%;
+	border: 3px solid #0f0f0f;
+	border-style:inset;
+	border-radius:10px;
+	min-height:100px;
+	max-height:300px;
+	margin-left:.8%;
+	overflow:auto;
+}
+.block button{
+	float:right;
+}
+.block button:hover{
+	background-color:black;
+	color:white;
+}
+p{
+	color:red;
+	font-family:verdana,sans serif;
+	font-style:italic;
+	font-weight:bold;
+	text-decoration:underline;
+}
+.foot{
+	background-color:black;
+	height:50px;
+	width:100%;
+}
+.foot footer{
+	color:white;
+}
+.tajheading{
+	font-weight:bold;
+	color:orange;
+	font-size:25px;
+	text-decoration: none;
+}
+@media all and (max-width: 768px) {
+	.logo img{
+		max-height:50px;
+	}
+	.banner{
+		height:150px;
+	}
+	.header{
+		height:100px;
+	}
+	.navcontainer{
+		padding-top:0px;
+	}
+	.block{
+		min-height:50px;
+		max-height:200px;
+		min-width:278px;
+	}
+	.container1{
+		height:calc(100% - 250px);
+	}
+	.tajheading{
+	font-weight:bold;
+	color:orange;
+	font-size:20px;
+	text-decoration: none;
+	}
+	.foot{
+		height:150px;
+	}
+}
+@media all and (max-width: 300px) {
+	.block{
+		min-height:50px;
+		max-height:200px;
+		min-width:200px;
+	}
+	.header{
+		height:200px;
+	}
+	.banner{
+		width:100%;
+	}
+	.container1{
+		height:calc(100% - 350px);
+	}
+	.foot{
+		height:150px;
+	}
+}
