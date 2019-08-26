@@ -4,6 +4,9 @@ from django.dispatch import receiver
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from .models import Like
+from django.core import serializers
+from django.forms.models import model_to_dict
+import json
 
 
 @receiver(post_save, sender=User)
@@ -28,15 +31,13 @@ def post_delete_handler(sender, instance, **kwargs):
                    "username": instance.username})
 
 
-'''
 @receiver(post_save, sender=Like)
-def announce_like(sender, instance,created, **kwargs):
+def announce_like(sender, instance, created, **kwargs):
     if created:
-        channel_layer=get_channel_layer()
+        channel_layer = get_channel_layer()
+        # data = serializers.serialize("json", instance)
+        dict_obj = model_to_dict(instance)
+        data = json.dumps(dict_obj)
         async_to_sync(channel_layer.group_send)(
-            "liked", {"type": "user.like",
-                      "event": "like",
-                      "username": "instance.username"
-                      }
+            "gossip", {"type": "liked.gossip", "event": "like", "author": data}
         )
-'''

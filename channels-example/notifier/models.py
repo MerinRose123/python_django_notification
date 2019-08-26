@@ -10,7 +10,8 @@ class User(AbstractUser):
 
 
 class Like(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True, unique=True)
     like = models.BooleanField(default=False)
-    created_date = models.DateTimeField(default=timezone.now)
+    username = models.CharField(max_length=80, null=False, unique=True)
+    # created_date = models.DateTimeField(default=timezone.now)
 

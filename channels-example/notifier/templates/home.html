@@ -30,6 +30,11 @@
 		<a href="{% static '../lobby/' %}"><button class="button">Start A Chat</button></a>
 	</center>
 	<p>
+	<form method="post" action="../like">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{request.user}}">
+        <input type="submit" class="button" id="myBtn" value="like easychat"></input>
+    </form>
     <h2>Details of the Users</h2>
 
 	<table border="1" class="table">
@@ -71,6 +76,11 @@
 			if(action.event == "Delete User") {
 			  var el = document.getElementById("not");
 			  el.innerHTML = `Existing user <b>${action.username}</b> has deleted account from easychat!`;
+			  nl.appendChild(el);
+			}
+			if(action.event == "like") {
+			  var el = document.getElementById("not");
+			  el.innerHTML = `User <b>${action.author}</b> likes easychat!`;
 			  nl.appendChild(el);
 			}
 		  })

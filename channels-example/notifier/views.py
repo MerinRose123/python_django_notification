@@ -15,6 +15,28 @@ from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
 import json
 from django.contrib.auth.models import User
+from django.utils import timezone
+
+
+# to add like to database
+@login_required
+def like(request):
+    if request.method == 'POST':
+        user = request.user
+        if request.user:
+            username = request.user.username
+            print(username)
+        if Like.objects.filter(author=request.user).exists():
+            messages.success(request,'You already likes the page')
+        else:
+            data = Like(author=user, like=True, username=username)
+            data.save()
+            print(user)
+            messages.success(request, 'Thank you for liking our chat application')
+        return redirect('../home')
+    else:
+        return redirect('../home')
+
 
 
 # The chat page where chats can be made

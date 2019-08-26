@@ -11,6 +11,6 @@ urlpatterns = [
     path('edit/', views.edit),
     path('delete/', views.delete),
     path('passwordchange/', views.passwordchange),
-    # path('chat/', TemplateView.as_view(template_name="chat.html")),
+    path('like', views.like),
     path('lobby/', views.room, name='room'),
 ]
