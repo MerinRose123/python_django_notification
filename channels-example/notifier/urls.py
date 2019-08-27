@@ -13,4 +13,5 @@ urlpatterns = [
     path('passwordchange/', views.passwordchange),
     path('like', views.like),
     path('lobby/', views.room, name='room'),
+    path('serializer/', views.UserCreate.as_view(), name='user-create'),
 ]

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "channels",
     "notifier",
     "chat",
+    'rest_framework',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -93,7 +94,10 @@ DATABASES = {
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
-    }
+        'TEST': {
+                    'NAME': 'test',
+                },
+            }
 }
 
 # Password validation

@@ -15,7 +15,11 @@ from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
 import json
 from django.contrib.auth.models import User
-from django.utils import timezone
+from rest_framework.views import APIView
+from .serializers import UserSerializer
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework import status
 
 
 # to add like to database
@@ -175,3 +179,18 @@ def register(request):
         # Rendering the form in html initially
         form = ContactForm()
     return render(request, 'register.html', {'form': form})
+
+
+class UserCreate(APIView):
+    """
+    Creates the user using the rest framework.
+    """
+
+    def post(self, request, format='json'):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
